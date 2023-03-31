@@ -1,4 +1,5 @@
 """The schema file for the cars being sold"""
+from typing import Optional
 from pydantic import BaseModel, Field
 
 
@@ -16,3 +17,7 @@ class CarBase(MongoBaseModel):
     price: int = Field(...)
     km: int = Field(...)
     cm3: int = Field(...)
+
+
+class CarUpdate(MongoBaseModel):
+    price: Optional[int] = None
