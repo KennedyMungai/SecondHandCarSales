@@ -21,3 +21,7 @@ class CarBase(MongoBaseModel):
 
 class CarUpdate(MongoBaseModel):
     price: Optional[int] = None
+
+
+class CarDB(CarBase):
+    pass
