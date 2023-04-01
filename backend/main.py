@@ -18,3 +18,10 @@ async def startup_db_client():
 @app.get("/")
 async def root() -> dict:
     return {'Message': 'This API works'}
+
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        reload=True
+    )
