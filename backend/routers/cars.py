@@ -1,3 +1,4 @@
+"""The cars router"""
 from fastapi import APIRouter
 
 
