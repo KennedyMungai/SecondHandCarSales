@@ -1,8 +1,10 @@
 """The main app for the backend of the webapp"""
 from fastapi import FastAPI
+import uvicorn
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 from dotenv import find_dotenv, load_dotenv
+
 
 load_dotenv(find_dotenv())
 
