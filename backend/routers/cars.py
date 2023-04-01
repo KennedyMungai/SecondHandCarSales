@@ -20,6 +20,15 @@ async def list_cars():
 
 @cars_router.post("/", response_description="Add a new car")
 async def create_car(_request: Request, _car: CarBase = Body(...)):
+    """An endpoint for creating cars
+
+    Args:
+        _request (Car): The new car data
+        _car (CarBase, optional): The new car data template. Defaults to Body(...).
+
+    Returns:
+        JSONResponse: The response on a JSOn format
+    """
     _car = jsonable_encoder(_car)
     _new_car = await _request.app.mongodb["cars1"].insert_one(_car)
     _created_car = await _request.app.mongodb["cars1"].find_one({"_id": _new_car.inserted_id})
