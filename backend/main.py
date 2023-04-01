@@ -37,8 +37,8 @@ async def root() -> dict:
     """
     return {'Message': 'This API works'}
 
+app.include_router(cars_router)
 
-@app.include_router(cars_router)
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
