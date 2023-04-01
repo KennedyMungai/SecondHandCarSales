@@ -5,6 +5,7 @@ import uvicorn
 from dotenv import find_dotenv, load_dotenv
 from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
+from routers.cars import cars_router
 
 load_dotenv(find_dotenv())
 
@@ -37,6 +38,7 @@ async def root() -> dict:
     return {'Message': 'This API works'}
 
 
+@app.include_router(cars_router)
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
