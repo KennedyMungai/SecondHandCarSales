@@ -1,10 +1,10 @@
 """The main app for the backend of the webapp"""
-from fastapi import FastAPI
-import uvicorn
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
-from dotenv import find_dotenv, load_dotenv
 
+import uvicorn
+from dotenv import find_dotenv, load_dotenv
+from fastapi import FastAPI
+from motor.motor_asyncio import AsyncIOMotorClient
 
 load_dotenv(find_dotenv())
 
@@ -13,12 +13,27 @@ DB_NAME = os.environ.get("DB_NAME")
 
 app = FastAPI()
 
+
 @app.on_event("startup")
 async def startup_db_client():
+    """The connection function"""
     app.mongodb_client = AsyncIOMotorClient(DB_URL)
+
+
+@app.on_event("shutdown")
+async def shutdown_db_client():
+    """The database connection method
+    """
+    app.mongodb_client.close()
+
 
 @app.get("/")
 async def root() -> dict:
+    """The disconnection function
+
+    Returns:
+        dict: _description_
+    """
     return {'Message': 'This API works'}
 
 
