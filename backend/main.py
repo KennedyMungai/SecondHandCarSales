@@ -1,7 +1,13 @@
 """The main app for the backend of the webapp"""
 from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
+import os
+from dotenv import find_dotenv, load_dotenv
 
+load_dotenv(find_dotenv())
+
+DB_URL = os.environ.get("DB_URL")
+DB_NAME = os.environ.get("DB_NAME")
 
 app = FastAPI()
 
